@@ -2,7 +2,8 @@
   <div class="">
     <h1>Ghilbi Film Studio</h1>
     <div class="main container">
-      <film-select :films='films'/>
+      <films-list :films='films'/>
+      <list-item :film='film'/>
       <film-detail :film='selectedFilm'/>
     </div>
   </div>
@@ -11,8 +12,10 @@
 </template>
 
 <script>
-import FilmSelect from './components/FilmSelect.vue'
+// import FilmSelect from './components/FilmSelect.vue'
 import FilmDetail from './components/FilmDetails.vue'
+import ListItem from './components/ListItem.vue'
+import FilmsList from './components/FilmsList.vue'
 import {eventBus} from './main.js'
 
 export default {
@@ -24,7 +27,7 @@ export default {
     };
   },
   mounted(){
-    fetch('https://ghibliapi.herokuapp.com/films')
+    fetch('https://ghibliapi.herokuapp.com/films/')
     .then(result => result.json())
     .then(films => this.films = films)
 
@@ -33,7 +36,8 @@ export default {
     })
   },
   components: {
-    "film-select": FilmSelect,
+    "films-list": FilmsList,
+    "list-item": ListItem,
     "film-detail": FilmDetail
   }
 }

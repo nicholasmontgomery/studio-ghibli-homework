@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
     <h1>Pick a film</h1>
+    <input type="text" v-model="search" placeholder="search-films">
     <select @change="handleClick" v-model="selectedFilm">
       <option v-for='film in films' :value='film'>{{film.title}}</option>
     </select>
@@ -14,9 +15,17 @@ export default {
   name: 'film-select',
   data() {
     return {
-    selectedFilm: {}
+    selectedFilm: {},
+    search: ""
   }
 },
+  computed: {
+    filteredFilms: function() {
+      return this.films.filter((film) => {
+        return film.title.match(this.search);
+      });
+    }
+  },
   props: ['films'],
   methods: {
     handleClick(){
