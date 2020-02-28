@@ -1,7 +1,9 @@
 <template lang="html">
   <div>
+    <h1>Pick a film</h1>
+    <input type="text" v-model="search" placeholder="search-films">
     <ul>
-      <list-item v-for="film in films" :film="film"/>
+      <list-item v-for="film in filteredFilms" :film="film"/>
     </ul>
   </div>
 </template>
@@ -12,9 +14,21 @@ import ListItem from './ListItem.vue'
 export default {
   name: 'films-list',
   props: ['films'],
-  components: {
-    "list-item": ListItem
+  data() {
+    return {
+    search: ""
   }
+},
+  components: {
+    "list-item": ListItem,
+  },
+  computed: {
+    filteredFilms: function() {
+      return this.films.filter((film) => {
+        return film.title.match(this.search);
+      });
+    }
+  },
 }
 </script>
 
