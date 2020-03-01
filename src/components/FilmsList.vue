@@ -25,7 +25,7 @@ export default {
   computed: {
     filteredFilms: function() {
       return this.films.filter((film) => {
-        return film.title.match(this.search);
+        return film.title.toLowerCase().match(this.search.toLowerCase());
       });
     }
   },

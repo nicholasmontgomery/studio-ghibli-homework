@@ -19,13 +19,13 @@ export default {
     search: ""
   }
 },
-  computed: {
-    filteredFilms: function() {
-      return this.films.filter((film) => {
-        return film.title.match(this.search);
-      });
-    }
-  },
+computed: {
+  filteredFilms: function() {
+    return this.films.filter((film) => {
+      return film.title.match(this.search);
+    });
+  }
+},
   props: ['films'],
   methods: {
     handleClick(){
